@@ -19,16 +19,23 @@ void remplir_tableau(char tableau_jeux[32][52])
         }
     }
 }
-void ajouter_briques(char tableau[32][52])
+void remplir_mur(char mur[8][45])
 {
-    for (int i = 0; i < 12; i++)
+    for (int i = 0; i < 8; i++)
     {
-        for (int j = 0; j < 52; j++)
+        for (int j = 0; j < 45; j++)
         {
-            if (i < 10 && i > 2 && j < 48 && j > 3)
-            {
-                tableau[i][j] = '#';
-            }
+            mur[i][j] = '#';
+        }
+    }
+}
+void ajouter_briques(char tableau[32][52], char mur[8][45])
+{
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 45; j++)
+        {
+            tableau[2+i][3+j] = mur[i][j];
         }
     }
 }
@@ -37,7 +44,7 @@ void ajouter_balles(char tableau[32][52], int balle[3])
     tableau[balle[1]][balle[0]] = 'O';
 }
 
-void modifier_pos_balle(char tableau[32][52], int balle[3])
+void modifier_pos_balle(char tableau[32][52], int balle[3], char mur[8][45])
 {
     int temp_balle = balle[2];
     switch (balle[2])
@@ -46,12 +53,20 @@ void modifier_pos_balle(char tableau[32][52], int balle[3])
         balle[1] -= 1;
         if (tableau[balle[1]][balle[0]] != ' ')
         {
+            if (mur[balle[1]-3][balle[0]-2] == '#')
+            {
+                mur[balle[1]-3][balle[0]-2] = ' ';
+            }
             balle[1] += 2;
             temp_balle = 3;
         }
         balle[0] -= 1;
         if (tableau[balle[1]][balle[0]] != ' ')
         {
+            if (mur[balle[1]-3][balle[0]-2] == '#')
+            {
+                mur[balle[1]-3][balle[0]-2] = ' ';
+            }
             balle[0] += 2;
             temp_balle = 1;
             if (temp_balle == 3)
@@ -64,12 +79,20 @@ void modifier_pos_balle(char tableau[32][52], int balle[3])
         balle[1] -= 1;
         if (tableau[balle[1]][balle[0]] != ' ')
         {
+            if (mur[balle[1]-3][balle[0]-2] == '#')
+            {
+                mur[balle[1]-3][balle[0]-2] = ' ';
+            }
             balle[1] += 2;
             temp_balle = 2;
         }
         balle[0] += 1;
         if (tableau[balle[1]][balle[0]] != ' ')
         {
+            if (mur[balle[1]-3][balle[0]-2] == '#')
+            {
+                mur[balle[1]-3][balle[0]-2] = ' ';
+            }
             balle[0] -= 2;
             temp_balle = 0;
             if (temp_balle == 2)
@@ -82,12 +105,20 @@ void modifier_pos_balle(char tableau[32][52], int balle[3])
         balle[1] += 1;
         if (tableau[balle[1]][balle[0]] != ' ')
         {
+            if (mur[balle[1]-3][balle[0]-2] == '#')
+            {
+                mur[balle[1]-3][balle[0]-2] = ' ';
+            }
             balle[1] -= 2;
             temp_balle = 1;
         }
         balle[0] += 1;
         if (tableau[balle[1]][balle[0]] != ' ')
         {
+            if (mur[balle[1]-3][balle[0]-2] == '#')
+            {
+                mur[balle[1]-3][balle[0]-2] = ' ';
+            }
             balle[0] -= 2;
             temp_balle = 3;
             if (temp_balle == 1)
@@ -100,12 +131,20 @@ void modifier_pos_balle(char tableau[32][52], int balle[3])
         balle[1] += 1;
         if (tableau[balle[1]][balle[0]] != ' ')
         {
+            if (mur[balle[1]-3][balle[0]-2] == '#')
+            {
+                mur[balle[1]-3][balle[0]-2] = ' ';
+            }
             balle[1] -= 2;
             temp_balle = 0;
         }
         balle[0] -= 1;
         if (tableau[balle[1]][balle[0]] != ' ')
         {
+            if (mur[balle[1]-3][balle[0]-2] == '#')
+            {
+                mur[balle[1]-3][balle[0]-2] = ' ';
+            }
             balle[0] += 2;
             temp_balle = 2;
             if (temp_balle == 0)
