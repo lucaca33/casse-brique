@@ -3,7 +3,8 @@
 
 #include <stdio.h>
 
-void remplir_tableau(char tableau_jeux[30][50]);
-void afficher_tab(char tableau_jeux[30][50]);
+void remplir_tableau(char tableau_jeux[32][52]);
+void afficher_tab(char tableau_jeux[32][52]);
+int get_touche();
 
 #endif
