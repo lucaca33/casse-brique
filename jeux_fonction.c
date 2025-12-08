@@ -37,6 +37,32 @@ void ajouter_balles(char tableau[32][52], int balle[3])
     tableau[balle[1]][balle[0]] = 'O';
 }
 
+void modifier_pos_balle(char tableau[32][52], int balle[3]){
+    switch (balle[2])
+    {
+    case 0:
+        balle[1] -= 1;
+        balle[0] -= 1;
+        break;
+    case 1:
+        balle[1] += 1;
+        balle[0] -= 1;
+        break;
+    case 2:
+        balle[1] += 1;
+        balle[0] += 1;
+        break;
+    case 3:
+        balle[1] -= 1;
+        balle[0] += 1;
+        break;
+    
+    default:
+        break;
+    }
+}
+
+
 void afficher_tab(char tableau_jeux[32][52])
 {
     for (int i = 0; i < 32; i++)
