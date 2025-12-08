@@ -1,7 +1,12 @@
-#include "main.h"
-#include <stdio.h>
+#include "jeux.h"
 
 int main(){
-    char i[30][50];
+    char tableau_jeux[30][50];
+    remplir_tableau(tableau_jeux);
+    while (1)
+    {
+        afficher_tab(tableau_jeux);
+    }
+    
     return 0;
 }
