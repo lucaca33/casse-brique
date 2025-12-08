@@ -37,31 +37,86 @@ void ajouter_balles(char tableau[32][52], int balle[3])
     tableau[balle[1]][balle[0]] = 'O';
 }
 
-void modifier_pos_balle(char tableau[32][52], int balle[3]){
+void modifier_pos_balle(char tableau[32][52], int balle[3])
+{
+    int temp_balle = balle[2];
     switch (balle[2])
     {
     case 0:
         balle[1] -= 1;
+        if (tableau[balle[1]][balle[0]] != ' ')
+        {
+            balle[1] += 2;
+            temp_balle = 3;
+        }
         balle[0] -= 1;
+        if (tableau[balle[1]][balle[0]] != ' ')
+        {
+            balle[0] += 2;
+            temp_balle = 1;
+            if (temp_balle == 3)
+            {
+                temp_balle = 2;
+            }
+        }
         break;
     case 1:
-        balle[1] += 1;
-        balle[0] -= 1;
+        balle[1] -= 1;
+        if (tableau[balle[1]][balle[0]] != ' ')
+        {
+            balle[1] += 2;
+            temp_balle = 2;
+        }
+        balle[0] += 1;
+        if (tableau[balle[1]][balle[0]] != ' ')
+        {
+            balle[0] -= 2;
+            temp_balle = 0;
+            if (temp_balle == 2)
+            {
+                temp_balle = 3;
+            }
+        }
         break;
     case 2:
         balle[1] += 1;
+        if (tableau[balle[1]][balle[0]] != ' ')
+        {
+            balle[1] -= 2;
+            temp_balle = 1;
+        }
         balle[0] += 1;
+        if (tableau[balle[1]][balle[0]] != ' ')
+        {
+            balle[0] -= 2;
+            temp_balle = 3;
+            if (temp_balle == 1)
+            {
+                temp_balle = 0;
+            }
+        }
         break;
     case 3:
-        balle[1] -= 1;
-        balle[0] += 1;
-        break;
-    
-    default:
+        balle[1] += 1;
+        if (tableau[balle[1]][balle[0]] != ' ')
+        {
+            balle[1] -= 2;
+            temp_balle = 0;
+        }
+        balle[0] -= 1;
+        if (tableau[balle[1]][balle[0]] != ' ')
+        {
+            balle[0] += 2;
+            temp_balle = 2;
+            if (temp_balle == 0)
+            {
+                temp_balle = 1;
+            }
+        }
         break;
     }
+    balle[2] = temp_balle;
 }
-
 
 void afficher_tab(char tableau_jeux[32][52])
 {
@@ -82,5 +137,40 @@ char lireCommandeNonBloquante()
     {
         return (char)_getch();
     }
+    return 0;
+}
+
+void ajouter_plateforme(char tableau[32][52], int plateforme[3])
+{
+    int x = plateforme[0];
+    int y = plateforme[1];
+    int taille = plateforme[2];
+
+    for (int i = 0; i < taille; i++)
+    {
+        tableau[y][x + i] = '=';
+    }
+}
+
+int deplacer_plateforme(char tableau[32][52], int plateforme[3], char commande)
+{
+    int x = plateforme[0];
+    int y = plateforme[1];
+    int taille = plateforme[2];
+
+    for (int i = 0; i < taille; i++)
+        tableau[y][x + i] = ' ';
+
+    if (commande == 'q' && x - taille> 1)
+        plateforme[0]--;
+
+    if (commande == 'd' && x + taille < 50)
+        plateforme[0]++;
+
+    if (commande == 's')
+        return 1;
+
+    for (int i = 0; i < taille; i++)
+        tableau[y][plateforme[0] + i] = '=';
     return 0;
 }

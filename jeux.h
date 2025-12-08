@@ -9,4 +9,6 @@ char lireCommandeNonBloquante();
 void ajouter_briques(char tableau[32][52]);
 void ajouter_balles(char tableau[32][52], int balle[3]);
 void modifier_pos_balle(char tableau[32][52], int balle[3]);
+void ajouter_plateforme(char tableau[32][52], int plateforme[3]);
+int deplacer_plateforme(char tableau[32][52], int plateforme[3], char commande);
 #endif
