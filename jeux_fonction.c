@@ -44,6 +44,7 @@ void ajouter_balles(char tableau[32][52], int balle[3])
     tableau[balle[1]][balle[0]] = 'O';
 }
 
+// beaucoup de conditions identiques ou quasi qui se répètent => il faudrait extraire le code en commun et en faire une fonction
 void modifier_pos_balle(char tableau[32][52], int balle[3], char mur[8][45])
 {
     int temp_balle = balle[2];
@@ -53,7 +54,7 @@ void modifier_pos_balle(char tableau[32][52], int balle[3], char mur[8][45])
         balle[1] -= 1;
         if (tableau[balle[1]][balle[0]] != ' ')
         {
-            if (mur[balle[1]-3][balle[0]-2] == '#')
+            if (mur[balle[1]-3][balle[0]-2] == '#') // /!\ avec ce genre de choses, il faut vérifier que l'on est bien dans le tableau
             {
                 mur[balle[1]-3][balle[0]-2] = ' ';
             }
